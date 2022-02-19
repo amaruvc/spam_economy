@@ -49,12 +49,17 @@ async function sendMail(destinatarios, asunto, contenido) {
   };
 
   await enviar_email(message);
-  fs.writeFile(`correos/${uuid()}.txt`, JSON.stringify(message), (err) => {
-    if (err) {
-      throw err;
+  fs.writeFile(
+    `correos/${uuid()}.txt`,
+    JSON.stringify(message),
+    "utf8",
+    (err) => {
+      if (err) {
+        throw err;
+      }
+      console.log("archivo guardado");
     }
-    console.log("archivo guardado");
-  });
+  );
 }
 
 app.listen(3000, () => {
